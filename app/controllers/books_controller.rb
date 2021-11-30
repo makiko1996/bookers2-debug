@@ -5,6 +5,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @user = @book.user
+    @book_comment = BookComment.new
   end
 
   def index
@@ -23,7 +24,7 @@ class BooksController < ApplicationController
       render :index
     end
   end
-
+  
   def edit
     @book = Book.find(params[:id])
     if @book.user == current_user
@@ -32,8 +33,6 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
-
-
 
   def update
     @book = Book.find(params[:id])
